@@ -1,3 +1,10 @@
+let score = {
+    sport: 0,
+    luxury: 0,
+    offroad: 0,
+    comfort: 0
+};
+
 const startButton = 
 document.getElementById('start-btn');
 const homeSection = 
@@ -16,46 +23,46 @@ const questions = [
     {
     question: "How do you spend your weekends?",
         answers: [  
-            "Going out with friends",
-            "Reading a book",
-            "Going on an adventure",
-            "Watching movies"
+           { text: "Going out with friends", type: "sport" },
+            { text: "Reading a book", type: "luxury" },
+            { text: "Going on an adventure", type: "offroad" },
+            { text: "Watching movies", type: "comfort" }
         ]
     },
     {
         question: "What matters to you most in a car?",
         answers: [
-            "Speed and performance", 
-            "Comfort and luxury",
-            "Off-road capabilities",
-            "Freedom"
+            { text: "Speed and performance", type: "sport" },
+            { text: "Comfort and luxury", type: "luxury" },
+            { text: "Off-road capabilities", type: "offroad" },
+            { text: "Freedom", type: "comfort" }
         ]
     },    
     {
         question: "What type of journey do you prefer?",
         answers: [
-            "A thrilling road trip",
-            "A relaxing drive through the countryside",
-            "An adventurous off-road expedition",
-            "A spontaneous drive with no destination"
+            { text: "A thrilling road trip", type: "sport" },
+            { text: "A relaxing drive through the countryside", type: "comfort" },
+            { text: "An adventurous off-road expedition", type: "offroad" },
+            { text: "A spontaneous drive with no destination", type: "luxury" }
         ]
     },
     {
         question: "What type of person are you?",
         answers: [
-            "A thrill-seeker who loves excitement",
-            "A person who values comfort and luxury",
-            "An adventurer who loves outdoor challenges",
-            "A free spirit who values independence"
+            { text: "A thrill-seeker who loves excitement", type: "sport" },
+            { text: "A person who values comfort and luxury", type: "luxury" },
+            { text: "An adventurer who loves outdoor challenges", type: "offroad" },
+            { text: "A free spirit who values independence", type: "comfort" }
         ]
     },
     {
         question: "What is your ideal weekend getaway?",
         answers: [
-            "A weekend at a beach resort",
-            "A cozy cabin in the mountains",
-            "An exciting city break",
-            "A peaceful retreat in the countryside"
+            { text: "A weekend at a beach resort", type: "luxury" },
+            { text: "A cozy cabin in the mountains", type: "offroad" },
+            { text: "An exciting city break", type: "sport" },
+            { text: "A peaceful retreat in the countryside", type: "comfort" }
         ]
     }
     
@@ -70,15 +77,24 @@ const questions = [
         answerButtons.innerHTML = '';
         questions[currentQuestion].answers.forEach(answer => {
             const button = document.createElement('button');
-            button.textContent = answer;
+            button.textContent = answer.text;
             button.classList.add('answer-btn');
 
             button.addEventListener('click', () => {
+                score[answer.type]++;
                 currentQuestion++;
+               
                 if (currentQuestion < questions.length) {
                     showQuestion();
                 } else {
-           
+
+                    let highest = "sport";
+                    for (let type in score) {
+                        if (score[type] > score[highest]) {
+                            highest = type;
+                        }
+                    }
+
                     document.getElementById("quiz").style.display = "none";
             
                     document.getElementById("results").style.display = "block";
@@ -86,6 +102,8 @@ const questions = [
                     document.getElementById("result-title").textContent = "Your Car Type";
             
                     document.getElementById("result-description").textContent = "Your result will appear here.";
+
+                    document.getElementById("result-title").textContent = highest;
                 }
             });
             answerButtons.appendChild(button);
