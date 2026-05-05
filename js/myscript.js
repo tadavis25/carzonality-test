@@ -16,21 +16,50 @@ const questions = [
     {
     question: "How do you spend your weekends?",
         answers: [  
-            "A) Going out with friends",
-            "B) Reading a book",
-            "C) Going on an adventure",
-            "D) Watching movies"
+            "Going out with friends",
+            "Reading a book",
+            "Going on an adventure",
+            "Watching movies"
         ]
     },
     {
-        question: "What matters most to you in a car?",
+        question: "What matters to you most in a car?",
         answers: [
-            "A) Speed and performance", 
-            "B) Comfort and luxury",
-            "C) Off-road capabilities",
-            "D) Freedom"
+            "Speed and performance", 
+            "Comfort and luxury",
+            "Off-road capabilities",
+            "Freedom"
+        ]
+    },    
+    {
+        question: "What type of journey do you prefer?",
+        answers: [
+            "A thrilling road trip",
+            "A relaxing drive through the countryside",
+            "An adventurous off-road expedition",
+            "A spontaneous drive with no destination"
+        ]
+    },
+    {
+        question: "What type of person are you?",
+        answers: [
+            "A thrill-seeker who loves excitement",
+            "A person who values comfort and luxury",
+            "An adventurer who loves outdoor challenges",
+            "A free spirit who values independence"
+        ]
+    },
+    {
+        question: "What is your ideal weekend getaway?",
+        answers: [
+            "A weekend at a beach resort",
+            "A cozy cabin in the mountains",
+            "An exciting city break",
+            "A peaceful retreat in the countryside"
         ]
     }
+    
+
 ];
     let currentQuestion = 0;
 
