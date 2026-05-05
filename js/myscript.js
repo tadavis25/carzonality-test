@@ -78,7 +78,14 @@ const questions = [
                 if (currentQuestion < questions.length) {
                     showQuestion();
                 } else {
-                    alert('Quiz completed!');
+           
+                    document.getElementById("quiz").style.display = "none";
+            
+                    document.getElementById("results").style.display = "block";
+            
+                    document.getElementById("result-title").textContent = "Your Car Type";
+            
+                    document.getElementById("result-description").textContent = "Your result will appear here.";
                 }
             });
             answerButtons.appendChild(button);
