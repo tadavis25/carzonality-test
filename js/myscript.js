@@ -5,6 +5,25 @@ let score = {
     comfort: 0
 };
 
+const results = {
+    sport: {
+        title: "BMW M3 Sport",
+        description: "You love speed and performance, and excitement! You are also a thrill-seeker who enjoys pushing limits and standing out."
+    },
+    luxury: {
+        title: "Bentley Continental GT",
+        description: "You value comfort, style, and exclusivity. You are a person who enjoys the finer things in life."
+    },
+    offroad: {
+        title: "Range Rover Sport",
+        description: "Your adventurous and always ready for a challenge! You love exploring new environments and enjoying the freedom of the outdoors."
+    },
+    comfort: {
+        title: "Toyota Camry",
+        description: "You prefer reliability and simplicity. You value comfort and practicality, and you enjoy a smooth and practical lifestyle."
+    }
+};
+
 const startButton = 
 document.getElementById('start-btn');
 const homeSection = 
@@ -95,15 +114,15 @@ const questions = [
                         }
                     }
 
+                        const finalResult = results[highest];
+                
+
                     document.getElementById("quiz").style.display = "none";
             
                     document.getElementById("results").style.display = "block";
             
-                    document.getElementById("result-title").textContent = "Your Car Type";
-            
-                    document.getElementById("result-description").textContent = "Your result will appear here.";
-
-                    document.getElementById("result-title").textContent = highest;
+                    document.getElementById("result-title").textContent = finalResult.title;
+                    document.getElementById("result-description").textContent = finalResult.description; 
                 }
             });
             answerButtons.appendChild(button);
