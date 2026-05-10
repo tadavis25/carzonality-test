@@ -8,20 +8,25 @@ let score = {
 const results = {
     sport: {
         title: "BMW M3 Sport",
-        description: "You love speed and performance, and excitement! You are also a thrill-seeker who enjoys pushing limits and standing out."
+        description: "You love speed and performance, and excitement! You are also a thrill-seeker who enjoys pushing limits and standing out.",
+        make: "bmw"
     },
     luxury: {
         title: "Bentley Continental GT",
-        description: "You value comfort, style, and exclusivity. You are a person who enjoys the finer things in life."
+        description: "You value comfort, style, and exclusivity. You are a person who enjoys the finer things in life.",
+        make: "bentley"
     },
     offroad: {
         title: "Range Rover Sport",
-        description: "Your adventurous and always ready for a challenge! You love exploring new environments and enjoying the freedom of the outdoors."
+        description: "Your adventurous and always ready for a challenge! You love exploring new environments and enjoying the freedom of the outdoors.",    
+        make: "range rover"
     },
     comfort: {
         title: "Toyota Camry",
-        description: "You prefer reliability and simplicity. You value comfort and practicality, and you enjoy a smooth and practical lifestyle."
+        description: "You prefer reliability and simplicity. You value comfort and practicality, and you enjoy a smooth and practical lifestyle.",
+        make: "toyota"  
     }
+
 };
 
 const startButton = 
@@ -123,9 +128,26 @@ const questions = [
             
                     document.getElementById("result-title").textContent = finalResult.title;
                     document.getElementById("result-description").textContent = finalResult.description; 
+                    getCarData(finalResult.make);
                 }
             });
             answerButtons.appendChild(button);
         });
     }
 
+    function getCarData(make) {
+
+        fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/${make}?format=json`)
+            .then(response => response.json())
+            .then(data => {
+                
+                // Get first car model from API response
+                const model = data.Results[0].Model_Name;
+                document.getElementById('extra-info').textContent = `Real ${make} model: ${model}`;
+            })
+            
+            .catch(error => {
+                document.getElementById('extra-info').textContent = 'Car data could not load.';
+                console.log(error);
+            });
+}   
